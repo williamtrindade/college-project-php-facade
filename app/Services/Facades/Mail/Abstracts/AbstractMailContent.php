@@ -2,8 +2,8 @@
 
 namespace App\Services\Facades\Mail\Abstracts;
 
-use App\Services\Facades\Mail\Header;
 use App\Services\Facades\Mail\Mail;
+use Exception;
 
 /**
  * Class AbstractMailContent
@@ -14,27 +14,25 @@ abstract class AbstractMailContent
     /** @var Mail $mail */
     protected $mail;
 
-    /** @var Header $mailHeader */
-    protected $mailHeader;
-
     /**
-     * @param string $to
+     * @param string $name
+     * @param string $email
      * @return $this
      */
-    public final function to(string $to): self
+    public final function to(string $name, string $email): self
     {
-        $this->mail->setTo($to);
+        $this->mail->addTo([$name, $email]);
         return $this;
     }
 
     /**
      * @param string $name
-     * @param $email
+     * @param string $email
      * @return $this
      */
-    public final function from(string $name, $email): self
+    public final function from(string $name, string $email): self
     {
-        $this->mailHeader->addFrom($name, $email);
+        $this->mail->getHeader()->setFrom([$name, $email]);
         return $this;
     }
 
@@ -64,17 +62,9 @@ abstract class AbstractMailContent
      */
     public function cc(string $cc): self
     {
-        $this->mailHeader->withCc($cc);
-        return $this;
-    }
-
-    /**
-     * @param string $cco
-     * @return $this
-     */
-    public function cco(string $cco): self
-    {
-        $this->mailHeader->withCco($cco);
+        $array = $this->mail->getHeader()->getCc();
+        array_push($array, $cc);
+        $this->mail->getHeader()->setCc($array);
         return $this;
     }
 
@@ -84,9 +74,27 @@ abstract class AbstractMailContent
      */
     public function bcc(string $bcc): self
     {
-        $this->mailHeader->withBcc($bcc);
+        $array = $this->mail->getHeader()->getCc();
+        array_push($array, $bcc);
+        $this->mail->getHeader()->setBcc($array);
         return $this;
     }
 
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public final function send(): bool
+    {
+        $this->mail->send();
+        return $this->mail->getStatus();
+    }
 
+    /**
+     * @return int
+     */
+    public function getStatus(): int
+    {
+        return $this->mail->getStatus();
+    }
 }

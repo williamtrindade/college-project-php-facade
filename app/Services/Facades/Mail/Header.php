@@ -8,67 +8,60 @@ namespace App\Services\Facades\Mail;
  */
 class Header
 {
-    /** @var string $content */
-    private $content;
+    /** @var array $from */
+    private $from;
+
+    /** @var array $cc */
+    private $cc = [];
+
+    /** @var array $bcc */
+    private $bcc = [];
 
     /**
-     * @return string
+     * @return array
      */
-    public function getContent(): ?string
+    public function getFrom(): array
     {
-        return $this->content ?: "";
+        return $this->from;
     }
 
     /**
-     * @param string $content
+     * @param array $from
      */
-    public function setContent(string $content): void
+    public function setFrom(array $from): void
     {
-        $this->content = $content;
+        $this->from = $from;
     }
 
     /**
-     * @param string $cc
-     * @return $this
+     * @return array
      */
-    public function withCc(string $cc): self
+    public function getCc(): array
     {
-        $new_header = $this->getContent() . "Cc: {$cc}\r\n";
-        $this->setContent($new_header);
-        return $this;
+        return $this->cc;
     }
 
     /**
-     * @param string $cco
-     * @return $this
+     * @param array $cc
      */
-    public function withCco(string $cco): self
+    public function setCc(array $cc): void
     {
-        $new_header = $this->getContent() . "Cco: {$cco}\r\n";
-        $this->setContent($new_header);
-        return $this;
+        $this->cc = $cc;
     }
 
     /**
-     * @param string $bcc
-     * @return $this
+     * @return array
      */
-    public function withBcc(string $bcc): self
+    public function getBcc(): array
     {
-        $new_header = $this->getContent() . "Bcc: {$bcc}\r\n";
-        $this->setContent($new_header);
-        return $this;
+        return $this->bcc;
     }
 
     /**
-     * @param string $name
-     * @param string $email
-     * @return $this
+     * @param array $bcc
      */
-    public function addFrom(string $name, string $email): self
+    public function setBcc(array $bcc): void
     {
-        $new_header = $this->getContent() . "From: {$name} <{$email}>\r\n";
-        $this->setContent($new_header);
-        return $this;
+        $this->bcc = $bcc;
     }
 }

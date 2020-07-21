@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Facades\Mail\MailFacade;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -15,15 +16,18 @@ class UserController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
+     * @throws Exception
      */
     public function mail(Request $request)
     {
         $mail = new MailFacade();
-        $mail->to($request->to)
+        $mail->to('Wil', 'william@odig.net')
             ->from('William', 'william@odig.net')
             ->subject($request->subject)
             ->message('Hello')
+            ->cc('william@odig.net')
+            ->bcc('willassiam@odig.net')
             ->send();
-        return response()->json($mail->getMail()->getStatus());
+        return response()->json($mail->getStatus());
     }
 }

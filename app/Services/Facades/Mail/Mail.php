@@ -3,6 +3,8 @@
 namespace App\Services\Facades\Mail;
 
 use App\Services\Facades\Mail\Contracts\MailInterface;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 
 /**
  * Class MailFacade
@@ -19,10 +21,7 @@ class Mail implements MailInterface
     /** @var int $status */
     private $status;
 
-    /** @var $from */
-    private $from;
-
-    /** @var string $to */
+    /** @var array $to */
     private $to;
 
     /** @var string $subject */
@@ -34,77 +33,103 @@ class Mail implements MailInterface
     /** @var Header $header */
     private $header;
 
+    /** @var SMTPConfig */
+    private $smtpConfig;
+
     /**
      * MailFacade constructor.
      */
     public function __construct()
     {
         $this->setStatus(self::NOT_ACCEPTED);
+        $this->header = new Header();
+        $this->smtpConfig = new SMTPConfig();
     }
 
     /**
-     * @return self
+     * @return $this
+     * @throws \Exception
      */
     public function send(): self
     {
-        if ($this->getHeader()) {
-            $this->setStatus(
-                mail($this->getTo(), $this->getSubject(), $this->getMessage(), $this->getHeader()->getContent())
-            );
-        } else {
-            $this->setStatus(
-                mail($this->getTo(), $this->getSubject(), $this->getMessage())
-            );
+        $mail = new PHPMailer(true);
+        $mail->SMTPDebug = false;
+        $mail->isSMTP();
+        $mail->Host       = $this->smtpConfig->getHost();
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $this->smtpConfig->getUsername();
+        $mail->Password   = $this->smtpConfig->getPassword();
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = $this->smtpConfig->getPort();
+        $mail->Body = $this->getMessage();
+
+        // Add from
+        try {
+            $mail->setFrom($this->getHeader()->getFrom()[1], $this->getHeader()->getFrom()[0]);
+        } catch (Exception $e) {
+            throw new \Exception($e->getMessage());
         }
+        // Add to
+        foreach ($this->getTo() as $to) {
+            try {
+                $mail->addAddress($to['email'], $to['name']);
+            } catch (Exception $e) {
+                throw new \Exception($e->getMessage());
+            }
+        }
+        // Add cc
+        foreach ($this->getHeader()->getCc() as $cc) {
+            $mail->addCC($cc);
+        }
+        // Add bcc
+        foreach ($this->getHeader()->getBcc() as $bcc) {
+            $mail->addBcc($bcc);
+        }
+        $mail->send();
+        $this->setStatus(self::ACCEPTED);
         return $this;
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function getStatus(): bool
+    public function getStatus(): int
     {
         return $this->status;
     }
 
     /**
-     * @param bool $status
+     * @param int $status
      */
-    private function setStatus(bool $status)
+    private function setStatus(int $status)
     {
         $this->status = $status;
     }
 
     /**
-     * @return mixed
+     * @return array|null
      */
-    public function getFrom()
-    {
-        return $this->from;
-    }
-
-    /**
-     * @param mixed $from
-     */
-    public function setFrom($from): void
-    {
-        $this->from = $from;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTo()
+    public function getTo(): ?array
     {
         return $this->to;
     }
 
     /**
-     * @param mixed $to
+     * @param array $to
      */
-    public function setTo($to)
+    public function setTo($to): void
     {
         $this->to = $to;
+    }
+
+    /**
+     * @param array $to
+     */
+    public function addTo(array $to): void
+    {
+        $array = $this->getTo() ?: [];
+        array_push($array, ['name' => $to[0], 'email' => $to[1]]);
+        $this->setTo($array);
     }
 
     /**
@@ -142,7 +167,7 @@ class Mail implements MailInterface
     /**
      * @return Header
      */
-    public function getHeader(): Header
+    public function getHeader(): ?Header
     {
         return $this->header;
     }
@@ -152,8 +177,22 @@ class Mail implements MailInterface
      */
     public function setHeader(Header $header): void
     {
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $this->header = $header;
+    }
+
+    /**
+     * @return SMTPConfig
+     */
+    public function getSmtpConfig(): SMTPConfig
+    {
+        return $this->smtpConfig;
+    }
+
+    /**
+     * @param SMTPConfig $smtpConfig
+     */
+    public function setSmtpConfig(SMTPConfig $smtpConfig): void
+    {
+        $this->smtpConfig = $smtpConfig;
     }
 }
