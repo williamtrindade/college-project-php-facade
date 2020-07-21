@@ -33,7 +33,7 @@ class Mail implements MailInterface
     /** @var Header $header */
     private $header;
 
-    /** @var SMTPConfig */
+    /** @var SMTPConfig $smtpConfig*/
     private $smtpConfig;
 
     /**
