@@ -70,3 +70,6 @@ class UserController extends Controller
 }
 ```
 
+Referência:
+https://refactoring.guru/design-patterns/facade
+
