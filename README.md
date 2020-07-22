@@ -69,7 +69,7 @@ class UserController extends Controller
     "message": "Hello!"
 }
 ```
-
+____
 Referência:
 https://refactoring.guru/design-patterns/facade
 
