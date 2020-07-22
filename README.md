@@ -30,9 +30,12 @@ ___
   MAIL_PASSWORD={{pass}}  
   MAIL_ENCRYPTION=tls**
 
+#### Baixar dependências
+> **composer install**
+
 #### Rodar aplicação
 > **php -S localhost:8000 -t public**
 
 #### Fazer um POST no endpoint
-> {{HOST}}/mail
+> **{{HOST}}/mail**
 
