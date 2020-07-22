@@ -2,11 +2,13 @@
 
 namespace App\Services\Facades\Mail;
 
+use App\Services\Facades\Mail\Abstracts\AbstractMailContent;
+
 /**
  * Class SMTPConfig
  * @package App\Services\Facades\Mail
  */
-class SMTPConfig
+class SMTPConfig extends AbstractMailContent
 {
     /** @var string $host */
     private $host;

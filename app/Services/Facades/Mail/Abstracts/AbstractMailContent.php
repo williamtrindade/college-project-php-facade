@@ -3,13 +3,14 @@
 namespace App\Services\Facades\Mail\Abstracts;
 
 use App\Services\Facades\Mail\Mail;
+use App\Services\Facades\Mail\MailFacade;
 use Exception;
 
 /**
  * Class AbstractMailContent
  * @package App\Services\MailFacade
  */
-abstract class AbstractMailContent
+abstract class AbstractMailContent extends MailFacade
 {
     /** @var Mail $mail */
     protected $mail;

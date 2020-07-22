@@ -8,7 +8,7 @@ use App\Services\Facades\Mail\Abstracts\AbstractMailContent;
  * Class MailFacade
  * @package App\Services\Facades\Mail
  */
-class MailFacade extends AbstractMailContent
+class MailFacade
 {
     /**
      * MailFacade constructor.

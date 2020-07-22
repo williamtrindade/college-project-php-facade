@@ -2,6 +2,7 @@
 
 namespace App\Services\Facades\Mail;
 
+use App\Services\Facades\Mail\Abstracts\AbstractMailContent;
 use App\Services\Facades\Mail\Contracts\MailInterface;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -10,7 +11,7 @@ use PHPMailer\PHPMailer\PHPMailer;
  * Class MailFacade
  * @package App\Services\MailFacade
  */
-class Mail implements MailInterface
+class Mail extends AbstractMailContent implements MailInterface
 {
     /** @var int */
     const ACCEPTED = 1;

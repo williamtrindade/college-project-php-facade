@@ -2,11 +2,14 @@
 
 namespace App\Services\Facades\Mail;
 
+use App\Services\Facades\Mail\Abstracts\AbstractMailContent;
+use App\Services\Facades\Mail\MailFacade;
+
 /**
  * Class Header
  * @package App\Services\MailFacade
  */
-class Header
+class Header extends AbstractMailContent
 {
     /** @var array $from */
     private $from;

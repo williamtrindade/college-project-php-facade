@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Services\Facades\Mail\MailFacade;
+use App\Services\Facades\Mail\MailFacade;
+use App\Services\Facades\Mail\MailFacade;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -11,7 +13,7 @@ use Illuminate\Http\Request;
  * Class UserController
  * @package App\Http\Controllers
  */
-class UserController extends Controller
+class UserController extends Controller, MailFacade, MailFacade
 {
     /**
      * @param Request $request
