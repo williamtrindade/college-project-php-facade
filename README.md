@@ -38,5 +38,13 @@ ___
 > **php -S localhost:8000 -t public**
 
 #### Fazer um POST no endpoint
-> **{{HOST}}/mail**
+> **{{HOST}}/mail**  
+```json
+{
+    "from": "test@test.com",
+    "to": "me@test.com",
+    "subject": "a simple message",
+    "message": "Hello!"
+}
+```
 

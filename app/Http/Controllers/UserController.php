@@ -21,12 +21,12 @@ class UserController extends Controller
     public function mail(Request $request)
     {
         $mail = new MailFacade();
-        $mail->to('Wil', 'william@odig.net')
-            ->from('William', 'william@odig.net')
+        $mail->to('Wil', $request->to)
+            ->from('William', $request->from)
             ->subject($request->subject)
-            ->message('Hello')
-            ->cc('william@odig.net')
-            ->bcc('willassiam@odig.net')
+            ->message($request->message)
+            ->cc('tests@ggg.net')
+            ->bcc('willafdsfssiam@fsdd.net')
             ->send();
         return response()->json($mail->getStatus());
     }
