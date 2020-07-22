@@ -1,24 +1,36 @@
-# Lumen PHP Framework
+## Trabalho sobre Padrões em Sistemas Web
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+> Demonstrar o uso de um padrão de projeto em Sistemas Web, contendo o seguinte:
+- Explicações sobre a aplicação do padrão. Pode ser um padrão GoF ou não. Caso seja GoF, precisa estar relacionado com componentes/classes que tem função na parte Web. Caso não seja GoF, buscar uma relação de semelhança do padrão implementado, com um ou mais padrões GoF.
+- Diagrama de classes: relacionando as classes do sistema com os papeis de cada uma no padrão de projetos. Pode ser necessário colocar o diagrama de classes genérico do padrão, relacionando com as suas classes.
+- Código fonte: pode ser em qualquer linguagem de programação orientada a objetos (backend ou frontend).
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+#### Observações:
+- Não pode ser MVC, DAO, Singleton nem Factory Method. Escolher outros...
+- Não é necessário ser um projeto totalmente funcional.
+- O trabalho é INDIVIDUAL.
+- A entrega valerá presença, bem como 1,0 ponto adicional na segunda nota. 
+___
+#### Resolução:
+Foi desenvolvida a funcionalidade de envio de email utilizando o padrão estrutural Facade.
+Utilizei a estrutura do framework lumen do php, com um endpoint para teste do envio de email.
+Acessar pacote da facade: [App/Services/Facades/Mail](https://github.com/williamtrindade/college-project-php-facade/tree/master/app/Services/Facades/Mail).
 
-## Official Documentation
+#### Diagrama de classes
+<img height="50%" src="https://raw.githubusercontent.com/williamtrindade/college-project-php-facade/master/classDiagram.png">
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+___
+#### Teste do endpoint
+##### Configurar SMTP no .env
+> **MAIL_MAILER=smtp  
+  MAIL_HOST=smtp.mailtrap.io  
+  MAIL_PORT=2525  
+  MAIL_USERNAME={{username}}  
+  MAIL_PASSWORD={{pass}}  
+  MAIL_ENCRYPTION=tls**
 
-## Contributing
+##### Rodar aplicação
+> **$ php -S localhost:8000 -t public**
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+##### 
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
