@@ -18,7 +18,7 @@ Utilizei a estrutura do framework lumen do php para facilitar a contrução das 
 
 Acessar pacote da Facade: [App/Services/Facades/Mail](https://github.com/williamtrindade/college-project-php-facade/tree/master/app/Services/Facades/Mail).
 
-### Diagrama de classes
+#### Diagrama de classes
 <img height="40%" src="https://raw.githubusercontent.com/williamtrindade/college-project-php-facade/master/classDiagram.png" alt="DC">
 
 ___
