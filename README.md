@@ -1,5 +1,6 @@
 ## Trabalho sobre Padrões em Sistemas Web
 
+### Enunciado
 > **Demonstrar o uso de um padrão de projeto em Sistemas Web, contendo o seguinte:**
 - Explicações sobre a aplicação do padrão. Pode ser um padrão GoF ou não. Caso seja GoF, precisa estar relacionado com componentes/classes que tem função na parte Web. Caso não seja GoF, buscar uma relação de semelhança do padrão implementado, com um ou mais padrões GoF.
 - Diagrama de classes: relacionando as classes do sistema com os papeis de cada uma no padrão de projetos. Pode ser necessário colocar o diagrama de classes genérico do padrão, relacionando com as suas classes.
