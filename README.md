@@ -23,6 +23,42 @@ Acessar pacote da Facade: [App/Services/Facades/Mail](https://github.com/william
 
 ___
 ### Teste
+#### Utilização da facade
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Services\Facades\Mail\MailFacade;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
+/**
+ * Class UserController
+ * @package App\Http\Controllers
+ */
+class UserController extends Controller
+{
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function mail(Request $request)
+    {
+        $mail = new MailFacade();
+        $mail->to('Wil', $request->to)
+            ->from('William', $request->from)
+            ->subject($request->subject)
+            ->message($request->message)
+            ->cc('tests@ggg.net')
+            ->bcc('willafdsfssiam@fsdd.net')
+            ->send();
+        return response()->json($mail->getStatus());
+    }
+}
+```
 #### Configurar SMTP no .env
 > **MAIL_MAILER=smtp  
   MAIL_HOST=smtp.mailtrap.io  
