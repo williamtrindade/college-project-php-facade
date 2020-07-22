@@ -1,17 +1,3 @@
-## Trabalho sobre Padrões em Sistemas Web
-
-### Enunciado
-> **Demonstrar o uso de um padrão de projeto em Sistemas Web, contendo o seguinte:**
-- Explicações sobre a aplicação do padrão. Pode ser um padrão GoF ou não. Caso seja GoF, precisa estar relacionado com componentes/classes que tem função na parte Web. Caso não seja GoF, buscar uma relação de semelhança do padrão implementado, com um ou mais padrões GoF.
-- Diagrama de classes: relacionando as classes do sistema com os papeis de cada uma no padrão de projetos. Pode ser necessário colocar o diagrama de classes genérico do padrão, relacionando com as suas classes.
-- Código fonte: pode ser em qualquer linguagem de programação orientada a objetos (backend ou frontend).
-
-### Observações:
-- Não pode ser MVC, DAO, Singleton nem Factory Method. Escolher outros...
-- Não é necessário ser um projeto totalmente funcional.
-- O trabalho é INDIVIDUAL.
-- A entrega valerá presença, bem como 1,0 ponto adicional na segunda nota. 
-___
 ### Resolução:
 Foi desenvolvida a funcionalidade de envio de email com smtp utilizando o padrão estrutural Facade.
 Utilizei a estrutura do framework lumen do php para facilitar a contrução das rotas de API, com um endpoint para teste do envio de email.
