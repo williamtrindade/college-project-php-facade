@@ -15,11 +15,10 @@ class MailFacade
 
     /**
      * MailFacade constructor.
-     * @return void
      */
     public function __construct()
     {
-        $this->mail = new Mail();
+        $this->mail = app(Mail::class);
     }
 
     /**

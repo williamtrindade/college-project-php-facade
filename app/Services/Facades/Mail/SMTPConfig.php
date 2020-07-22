@@ -48,7 +48,7 @@ class SMTPConfig
     /**
      * @return string
      */
-    public function getHost(): string
+    public function getHost(): ?string
     {
         return $this->host;
     }
@@ -56,7 +56,7 @@ class SMTPConfig
     /**
      * @return string
      */
-    public function getPort(): string
+    public function getPort(): ?string
     {
         return $this->port;
     }
@@ -64,7 +64,7 @@ class SMTPConfig
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -72,7 +72,7 @@ class SMTPConfig
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -80,7 +80,7 @@ class SMTPConfig
     /**
      * @return string
      */
-    public function getEncryption(): string
+    public function getEncryption(): ?string
     {
         return $this->encryption;
     }

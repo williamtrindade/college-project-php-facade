@@ -38,12 +38,14 @@ class Mail implements MailInterface
 
     /**
      * MailFacade constructor.
+     * @param Header $header
+     * @param SMTPConfig $smtpConfig
      */
-    public function __construct()
+    public function __construct(Header $header, SMTPConfig $smtpConfig)
     {
         $this->setStatus(self::NOT_ACCEPTED);
-        $this->header = new Header();
-        $this->smtpConfig = new SMTPConfig();
+        $this->header = $header;
+        $this->smtpConfig = $smtpConfig;
     }
 
     /**
